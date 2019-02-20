@@ -30,6 +30,24 @@ Usuarios que harán peticiones al servidor
 
 <img src="https://s3.us-east-2.amazonaws.com/eafitrequisitos/Http+Agent+Architecture.png" />
 
+<table>
+<tr>Tipo Aplicación       
+    Estilo Arquitectónico 
+    Estrategia de Despliegue  
+    Aspectos Técnicos
+    Lenguaje
+    Frameworks
+</tr>  
+<tr>
+Servidor Web  
+Modelo BDI
+Cliente/Servidor
+Archivos de texto para almacenar el Log
+Java
+Ninguno
+</tr>  
+</table>
+
 # 4. OPERACIONES
 
 ## 4.1.  Operaciones Anwer/Listener (Belief):
