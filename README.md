@@ -1,4 +1,7 @@
 # Arquitectura HTTP AGENT
+John Faber Florez Vasco
+Luisa Fernanda Restrepo Gutierrez
+Luis Fernando Londoño Londoño
 --------------------------------------
 
 # 1. RESUMEN
