@@ -31,13 +31,15 @@ Usuarios que harán peticiones al servidor
 <img src="https://s3.us-east-2.amazonaws.com/eafitrequisitos/Http+Agent+Architecture.png" />
 
 <table>
-<tr>Tipo Aplicación       
-    Estilo Arquitectónico 
-    Estrategia de Despliegue  
-    Aspectos Técnicos
-    Lenguaje
-    Frameworks
-</tr>  
+  <tr> 
+    <strong> <td> Tipo Aplicación </td> </strong> 
+    <td> Servidor Web  </td>
+  </tr>     
+  <tr> Estilo Arquitectónico </tr>
+  <tr> Estrategia de Despliegue  </tr>
+  <tr> Aspectos Técnicos </tr>
+  <tr> Lenguaje </tr>
+  <tr> Frameworks </tr> 
 <tr>
 Servidor Web  
 Modelo BDI
