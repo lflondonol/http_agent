@@ -14,6 +14,11 @@ Tomamos como referencia el concepto de cadena de bloques, que servirá para vali
 
 # 2. CARACTERÍSTICAS E INTERESADOS
 ## 2.1. Características
+- Recibir peticiones: servidor recibirá las peticiones enviadas por el web browser y las redireccionará al componente responsable.
+- Validar peticiones: servidor tendrá la capacidad de validar las peticiones a travez de un conjunto de archivos que funcionarán como certificadores.
+- Procesar peticiones: servidor sacará la información necesaria del request y buscará el recurso requerido de las peticiones válidas.
+- Almacenar trazabilidad: servidor almacenará la trazabilidad de las peticiones.
+- Responder peticiones: servidor responderá a las peticiones según resultado de la validación y procesamiento de este.
 
 ## 2.2. Interesados
 
