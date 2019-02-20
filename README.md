@@ -26,7 +26,7 @@ Tomamos como referencia el concepto de cadena de bloques, que servirá para vali
 ## 2.2. Interesados
 Usuarios que harán peticiones al servidor
 
-# 3. MODELO ARQUITECTONICO
+# 3. MODELO ARQUITECTÓNICO
 
 <img src="https://s3.us-east-2.amazonaws.com/eafitrequisitos/Http+Agent+Architecture.png" />
 
@@ -67,19 +67,17 @@ Cuando se realiza la petición HTTP el listener recibe la petición y  posterior
 
 Las operaciones del agente validador, busca en una cadena de bloques la autenticidad de la petición y la refulta o solicita su atención al agente de operaciones.
 
-## 4.3. Operaciones Agente Procesador
+## 4.3. Operaciones Agente Procesador (Intention):
 
 Las operaciones de este agente, se encarga de procesar la peticiónes, gestionando una cola que permite procesar y redireccionar la petición dondede corresponde. La petición puede resultar procesada satisfactoriamente o ser rechazada.
 
 # 5. REGLAS CORRESPONDIENTES
 Las restricciones del proyecto son dadas por la evaluación de la práctica, en donde se tienen las siguientes:
 - Desarrollar el servidor Http 1.1 desde cero, sin usar frameworks.
-- Implementación exclusica de la atención de peticiones
-- Se debe almacenar la traza de las peticiones
+- Implementación exclusiva de la atención de peticiones.
+- Se debe almacenar la traza de las peticiones.
 
 # 6. REFERENCIAS
-
-
-
-
-
+- García, D. Simari, G. García, A. Planificación en agentes BDI. - Mestras, J. Agentes inteligentes, modelos y arquitecturas de agentes.  
+- Leach, Paul J. Berners-Lee, Tim Mogul, Jeffrey C. Masinter, Larry Fielding, Roy T. Gettys, James. Hypertext Transfer Protocol 
+- HTTP/1.1. Tomado de: https://tools.ietf.org/html/rfc2616
