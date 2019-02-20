@@ -7,6 +7,8 @@
 
 # 3. MODELO ARQUITECTONICO
 
+![Screenshot](Http_Agent_Architecture)
+
 # 4. OPERACIONES
 
 # 5. REGLAS CORRESPONDIENTES
