@@ -30,7 +30,7 @@ Usuarios que harán peticiones al servidor
 
 <img src="https://s3.us-east-2.amazonaws.com/eafitrequisitos/Http+Agent+Architecture.png" />
 
-<table border="2">
+<table>
   <tr> 
     <td> <strong> Tipo Aplicación</strong> </td>
     <td> Servidor Web  </td>
