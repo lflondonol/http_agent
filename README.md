@@ -1,2 +1,19 @@
-# http_agent
-Para el proyecto http_agent
+# Arquitectura HTTP AGENT
+--------------------------------------
+
+# 1. RESUMEN
+
+# 2. CARACTERÍSTICAS E INTERESADOS
+
+# 3. MODELO ARQUITECTONICO
+
+# 4. OPERACIONES
+
+# 5. REGLAS CORRESPONDIENTES
+
+# 6. REFERENCIAS
+
+
+
+
+
