@@ -19,7 +19,7 @@ Tomamos como referencia el concepto de cadena de bloques, que servirá para vali
 
 # 3. MODELO ARQUITECTONICO
 
-![Screenshot](Http_Agent_Architecture)
+<img src="https://s3.us-east-2.amazonaws.com/eafitrequisitos/Http+Agent+Architecture.png" />
 
 # 4. OPERACIONES
 
