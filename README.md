@@ -1,5 +1,6 @@
 # Arquitectura HTTP AGENT
---------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------
 
 # 1. RESUMEN
 
@@ -21,6 +22,7 @@ Tomamos como referencia el concepto de cadena de bloques, que servirá para vali
 - Responder peticiones: servidor responderá a las peticiones según resultado de la validación y procesamiento de este.
 
 ## 2.2. Interesados
+Usuarios que harán peticiones al servidor
 
 # 3. MODELO ARQUITECTONICO
 
@@ -41,6 +43,10 @@ Las operaciones del agente validador, busca en una cadena de bloques la autentic
 Las operaciones de este agente, se encarga de procesar la peticiónes, gestionando una cola que permite procesar y redireccionar la petición dondede corresponde. La petición puede resultar procesada satisfactoriamente o ser rechazada.
 
 # 5. REGLAS CORRESPONDIENTES
+Las restricciones del proyecto son dadas por la evaluación de la práctica, en donde se tienen las siguientes:
+- Desarrollar el servidor Http 1.1 desde cero, sin usar frameworks.
+- Implementación exclusica de la atención de peticiones
+- Se debe almacenar la traza de las peticiones
 
 # 6. REFERENCIAS
 
