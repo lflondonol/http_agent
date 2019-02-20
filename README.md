@@ -3,11 +3,14 @@
 
 # 1. RESUMEN
 
-La idea de desarrollar el servidor http, la basamos en dos conceptos
-- Belief (qué es lo que piensa): componente que tiene conocimiento sobre su contexto. Este es actualizado cuando se cumple su condición.
-- Desires (qué es lo que quiere): contiene los objetivos que el agente quisiera alcanzar.
-- Intention (qué es lo que hace): lo que se ha decidido hacer.
+La idea de desarrollar el servidor http, la basamos en dos conceptos que los tomamos como referencia para proponer un servidor http con caracteristicas adiconales. Los conceptos están basados en una arquitectura de agentes (BDI) y el cocnepto de validación de información basada en busqueda de validación de bloques.
 
+Las arquitecturas BDI para agentes, tiene tres elementos que hace parte de la propuesta:
+  - Belief (qué es lo que piensa): componente que tiene conocimiento sobre su contexto. Este es actualizado cuando se cumple su condición.
+  - Desires (qué es lo que quiere): contiene los objetivos que el agente quisiera alcanzar.
+  - Intention (qué es lo que hace): lo que se ha decidido hacer.
+  
+Tomamos como referencia el concepto de cadena de bloques, que servirá para validar la autenticidad de una petición HTTP.
 
 # 2. CARACTERÍSTICAS E INTERESADOS
 ## 2.1. Características
