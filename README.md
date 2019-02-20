@@ -1,7 +1,4 @@
 # Arquitectura HTTP AGENT
-John Faber Florez Vasco
-Luisa Fernanda Restrepo Gutierrez
-Luis Fernando Londoño Londoño
 --------------------------------------
 
 # 1. RESUMEN
@@ -17,26 +14,28 @@ Tomamos como referencia el concepto de cadena de bloques, que servirá para vali
 
 # 2. CARACTERÍSTICAS E INTERESADOS
 ## 2.1. Características
-- Recibir peticiones: servidor recibirá las peticiones enviadas por el web browser y las redireccionará al componente responsable.
-- Validar peticiones: servidor tendrá la capacidad de validar las peticiones a travez de un conjunto de archivos que funcionarán como certificadores.
-- Procesar peticiones: servidor sacará la información necesaria del request y buscará el recurso requerido de las peticiones válidas.
-- Almacenar trazabilidad: servidor almacenará la trazabilidad de las peticiones.
-- Responder peticiones: servidor responderá a las peticiones según resultado de la validación y procesamiento de este.
 
 ## 2.2. Interesados
-Usuario: persona que usará el servicio.
 
-# 3. MODELO ARQUITECTÓNICO
+# 3. MODELO ARQUITECTONICO
 
-<img src="https://s3.us-east-2.amazonaws.com/eafitrequisitos/Http+Agent+Architecture.png" />
+![Screenshot](Http_Agent_Architecture)
 
 # 4. OPERACIONES
 
+## 4.1.  Operaciones Anwer/Listener (Belief):
+
+Cuando se realiza la petición HTTP el listener recibe la petición y  posteriormente solicita la verificación con el fin de saber si es una petición válida. Esta petición es recivida y verificada a través de una cadena de bloques para comprobar su autenticidad,  por último un componente procesa la respuesta de minero y redirecciona el resultado que realicen operaciones de rechazo o para procesar la petición..
+
+## 4.2. Operaciones de Validación (Desired):
+
+Las operaciones del agente validador, busca en una cadena de bloques la autenticidad de la petición y la refulta o solicita su atención al agente de operaciones.
+
+## 4.3. Operaciones Agente Procesador
+
+Las operaciones de este agente, se encarga de procesar la peticiónes, gestionando una cola que permite procesar y redireccionar la petición dondede corresponde. La petición puede resultar procesada satisfactoriamente o ser rechazada.
+
 # 5. REGLAS CORRESPONDIENTES
-Las restricciones del proyecto son dadas por la evaluación de la práctica, en donde se tienen las siguientes:
-- Desarrollar el servidor Http 1.1 desde cero, sin usar frameworks.
-- Implementación exclusica de la atención de peticiones
-- Se debe almacenar la traza de las peticiones
 
 # 6. REFERENCIAS
 
