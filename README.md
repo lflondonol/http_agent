@@ -32,22 +32,29 @@ Usuarios que harán peticiones al servidor
 
 <table>
   <tr> 
-    <strong> <td> Tipo Aplicación </td> </strong> 
+    <td> <strong> Tipo Aplicación</strong> </td>
     <td> Servidor Web  </td>
-  </tr>     
-  <tr> Estilo Arquitectónico </tr>
-  <tr> Estrategia de Despliegue  </tr>
-  <tr> Aspectos Técnicos </tr>
-  <tr> Lenguaje </tr>
-  <tr> Frameworks </tr> 
-<tr>
-Servidor Web  
-Modelo BDI
-Cliente/Servidor
-Archivos de texto para almacenar el Log
-Java
-Ninguno
-</tr>  
+  </tr>
+  <tr> 
+    <td> <strong> Estili Arquitectónico/strong> </td>
+    <td> Modelo BDI </td>
+  </tr>  
+  <tr> 
+    <td> <strong> Estrategia de Despliegue</strong> </td>
+    <td> Cliente / Servidor  </td>
+  </tr>  
+  <tr> 
+    <td> <strong> Aspectos Técnicos </strong> </td>
+    <td> Archivos de texto para almacenar el log  </td>
+  </tr>  
+  <tr> 
+    <td> <strong> Lenguaje </strong> </td>
+    <td> Java  </td>
+  </tr>  
+  <tr> 
+    <td> <strong> Frameworks </strong> </td>
+    <td> Ninguno  </td>
+  </tr>  
 </table>
 
 # 4. OPERACIONES
