@@ -24,14 +24,19 @@ Tomamos como referencia el concepto de cadena de bloques, que servirá para vali
 - Responder peticiones: servidor responderá a las peticiones según resultado de la validación y procesamiento de este.
 
 ## 2.2. Interesados
+Usuario: persona que usará el servicio.
 
-# 3. MODELO ARQUITECTONICO
+# 3. MODELO ARQUITECTÓNICO
 
 <img src="https://s3.us-east-2.amazonaws.com/eafitrequisitos/Http+Agent+Architecture.png" />
 
 # 4. OPERACIONES
 
 # 5. REGLAS CORRESPONDIENTES
+Las restricciones del proyecto son dadas por la evaluación de la práctica, en donde se tienen las siguientes:
+- Desarrollar el servidor Http 1.1 desde cero, sin usar frameworks.
+- Implementación exclusica de la atención de peticiones
+- Se debe almacenar la traza de las peticiones
 
 # 6. REFERENCIAS
 
