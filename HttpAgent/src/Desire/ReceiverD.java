@@ -3,12 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Desire;
+package desire;
+
+import beliefe.ListenerB;
+import interfaces.httpRequest;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author luisa
+ * @author JohnFlorez
  */
-public class ReceiverD {
+public class ReceiverD implements httpRequest{
+    
+    private Socket connect;
+    private ServerSocket myServer;
+
+    public ReceiverD() {
+    }
+
+    
+    @Override
+    public void callServer(ServerSocket s) {
+       
+    }
+
+    @Override
+    public void callReceiver(Socket connect) {
+        
+       
+    }
+
     
 }
