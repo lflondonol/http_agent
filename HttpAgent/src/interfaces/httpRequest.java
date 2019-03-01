@@ -19,6 +19,6 @@ public interface httpRequest {
     
     public void callReceiver(Socket connect);
     
-    
-    
+    public void callRejector();
+         
 }

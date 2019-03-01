@@ -1,18 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beliefe;
 
 import desire.ReceiverD;
 import interfaces.httpRequest;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /**
  *
  * @author JohnFlorez
@@ -48,6 +47,7 @@ public class ListenerB implements Runnable, httpRequest{
                 System.out.println("Se ha abierto la conexión. (" +
                             new Date() + ")");
                 
+                
                 Thread thread = new Thread(miServidor);
                 thread.start();
             }
@@ -63,11 +63,20 @@ public class ListenerB implements Runnable, httpRequest{
     @Override
     public void run() {
         
+        System.out.println("Conexion IP: "+
+                        connect.getLocalAddress().toString());
+        ReceiverD rd = new ReceiverD();
+        rd.callReceiver(connect);
         
     }
 
     @Override
     public void callReceiver(Socket connect) {
+        
+    }
+
+    @Override
+    public void callRejector() {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
