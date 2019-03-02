@@ -1,7 +1,7 @@
 package beliefe;
 
+import desire.AnswerD;
 import desire.ReceiverD;
-import interfaces.httpRequest;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,26 +17,26 @@ import java.util.Date;
  * @author JohnFlorez
  */
 
-public class ListenerB implements Runnable, httpRequest{
+public class ListenerB implements Runnable {
     
     static final int PORT = 8087;
     
-    private Socket connect;
-
-
-    public ListenerB() {
     
-    }
+    private static Socket clientConnect;
+    private static String pathRequest;
+    private static boolean pathExists;
+
+
+
 
     public ListenerB(Socket connect) {
-        this.connect = connect;
+        this.clientConnect = connect;
     }
     
     
     
     
-    @Override
-    public void callServer(ServerSocket serverConnect) {
+    public static Socket callServer(ServerSocket serverConnect) {
          try {
             serverConnect = new ServerSocket(PORT);
             System.out.println("Servidor activo. \n Se escucha la conexión por"
@@ -55,31 +55,26 @@ public class ListenerB implements Runnable, httpRequest{
         } catch (IOException ex) {
             System.err.println("Error de conexión al servidor : "+
                     ex.getMessage());
-        }
+        }//try
+         
+         return clientConnect;
          
             
-    }
+    }//metodo
 
     @Override
     public void run() {
         
         System.out.println("Conexion IP: "+
-                        connect.getLocalAddress().toString());
-        ReceiverD rd = new ReceiverD();
-        rd.callReceiver(connect);
+                        clientConnect.getLocalAddress().toString());
+        
+        System.err.println("Conexion "+clientConnect.getLocalAddress().toString());
+        
+        pathRequest = ReceiverD.callReceiver(clientConnect);
+        
+        AnswerD.sendMessage(clientConnect,pathExists); 
         
     }
-
-    @Override
-    public void callReceiver(Socket connect) {
-        
-    }
-
-    @Override
-    public void callRejector() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
 
     
 }

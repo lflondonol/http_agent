@@ -1,6 +1,5 @@
 package desire;
 
-import interfaces.httpRequest;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author JohnFlorez
  */
-public class AnswerD implements httpRequest{
+public class AnswerD {
     
     
     static final File WEB_ROOT = 
@@ -33,31 +32,16 @@ public class AnswerD implements httpRequest{
     static boolean verbose = true;
 
     public AnswerD() {
+        
     }
     
-    public void sendMessage(Socket connect,String pathRequested, 
-            boolean miningSate){
+    public static void sendMessage(Socket clientConnect,boolean pathExists){
+        
         System.err.println("ESTOY LISTO PARA ENVIAR MI MENSAJE DE "
                 + "\nNO EXISTE EL RECURSO BUSCADO EN MINING DE "+
-                "CLIENTE "+connect.getLocalAddress().toString());
+                "CLIENTE "+clientConnect.getLocalAddress().toString());
             
     }
  
-    
-
-    @Override
-    public void callServer(ServerSocket s) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    @Override
-    public void callReceiver(Socket connect) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    @Override
-    public void callRejector() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
     
 }

@@ -7,6 +7,7 @@ package desire;
 
 import java.io.IOException;
 import java.net.Socket;
+import desire.AnswerD;
 
 /**
  *
@@ -15,12 +16,12 @@ import java.net.Socket;
 public class Mining {
     
     private boolean pathExists;
-    private AnswerD answerD;
+    //private AnswerD answerD;
 
     public Mining() {
     }
     
-    public boolean pathExistsInBlockChainContent(Socket connect, 
+    public static boolean pathExistsInBlockChainContent(Socket connect, 
             String pathRequested) throws IOException{
         //Desde acá el valida en nuestros archivos planos creados 
         //si la ruta existe por lo menos en la cantidad determinada de acuerdo
@@ -29,9 +30,6 @@ public class Mining {
         //rapida sin tener que ir a nuestro módulo de INTENSION
         //envía dos parámetros (ruta , estado (true or false)
         
-       //luego de validar sucedería esto.
-        AnswerD answerd = new AnswerD();
-        answerd.sendMessage(connect,pathRequested, pathExists);
         
         
         return true;

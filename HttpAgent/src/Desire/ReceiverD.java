@@ -6,7 +6,7 @@
 package desire;
 
 import beliefe.ListenerB;
-import interfaces.httpRequest;
+import desire.Mining;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,11 +22,9 @@ import java.util.logging.Logger;
  *
  * @author JohnFlorez
  */
-public class ReceiverD implements httpRequest{
+public class ReceiverD{
     
-    private Socket connect;
-    private ServerSocket myServer;
-    //private Mining mining;
+    private static String pathRequest;
     
 
     public ReceiverD() {
@@ -34,20 +32,16 @@ public class ReceiverD implements httpRequest{
 
     
 
-    @Override
-    public void callReceiver(Socket connect) {
+    public static String callReceiver(Socket connect) {
         
         BufferedReader in = null;
-        PrintWriter out = null;
-        BufferedOutputStream dataOut = null;
-        String pathRequest = null;
+        System.out.println("ddddd");
         
         try {
             in = new BufferedReader(new InputStreamReader(
             connect.getInputStream()));
-            dataOut = new BufferedOutputStream(connect.getOutputStream());
-            String input = in.readLine();
-            System.out.println("lo que llego fue :"+input);
+            pathRequest = in.readLine();
+            System.out.println("Lo que llego fue :"+pathRequest);
             /*
             En esta parte iría el componente de mining, se captura lo que llego
             recuerden que la entrada lo que recibe es un STRING separado asi
@@ -57,27 +51,17 @@ public class ReceiverD implements httpRequest{
             ruta valida, me imagino que esto nos debe retornar un booleano
             entonces instanciaríamos el método validator de la clase Mining
             */
-            Mining mining = new Mining();
-            mining.pathExistsInBlockChainContent(connect, input);
+            //Mining.pathExistsInBlockChainContent(connect, input);
+            
+            
             
         
         } catch (IOException ex) {
             Logger.getLogger(ReceiverD.class.getName()).log(Level.SEVERE, 
                     null, ex);
         }
-
         
-    }
-
-    @Override
-    public void callServer(ServerSocket s) {
-
-    }
-
-    @Override
-    public void callRejector() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    
+        return pathRequest;
+        
+    }    
 }
