@@ -3,7 +3,9 @@
  */
 package httpagent;
 
-import beliefe.ListenerB;
+import beliefe.*;
+import desire.*;
+//import intention.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -14,18 +16,38 @@ import java.net.Socket;
  * @author Luis Fernando Londoño Londoño
  * 
  */
-public class HttpAgent {
+public class HttpAgent implements Runnable{
 
     /**
      * @param args the command line arguments
      */
     private static ServerSocket serverSocket; 
+    private static Socket clientConnect;
+    private static String pathRequest;
+    private static boolean pathExists;
+
+    public HttpAgent() {
+       
+    }
+   
     
     
     public static void main(String[] args) {
-        ListenerB lb = new ListenerB();
+            
+            HttpAgent httpA = new HttpAgent();
+            
+            Thread thread = new Thread(httpA);
+            thread.start();
         
-        lb.callServer(serverSocket);
+
     }
+
+    @Override
+    public void run() {
+        clientConnect = ListenerB.callServer(serverSocket);
+        
+
+    }
+
     
 }

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
+import desire.AnswerD;
 
 /**
  *
@@ -17,12 +18,12 @@ import java.util.Scanner;
 public class Mining {
     
     private boolean pathExists;
-    private AnswerD answerD;
+    //private AnswerD answerD;
 
     public Mining() {
     }
     
-    public boolean pathExistsInBlockChainContent(Socket connect, 
+    public static boolean pathExistsInBlockChainContent(Socket connect, 
             String pathRequested) throws IOException{
         //Desde acá el valida en nuestros archivos planos creados 
         //si la ruta existe por lo menos en la cantidad determinada de acuerdo
@@ -56,9 +57,6 @@ public class Mining {
         System.out.println("Path encontrado en esta cantidad de archivos: "+pathFilesFound);
         
        //luego de validar sucedería esto.
-        AnswerD answerd = new AnswerD();
-        answerd.sendMessage(connect,pathRequested, pathExists);
-        
         
         return true;
     }
