@@ -1,5 +1,6 @@
 package desire;
 
+import httpagent.HttpRequestedPath;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,23 +24,35 @@ import java.util.logging.Logger;
  */
 public class AnswerD {
     
+     private static String fileRequested = null;
+//     
+		
+     private static HttpRequestedPath httpRequestedPath = null;
+     
+     private static StringTokenizer parse;
+     
     
-    static final File WEB_ROOT = 
-            new File("/Users/JohnFlorez/Developer/http_agent/HttpAgent/src/repository/");
-    static final String DEFAULT_FILE = "index.html";
-    static final String FILE_NOT_FOUND = "404.html";
-    static final String METHOD_NOT_SUPPORTED = "not-supported.html";
-    static boolean verbose = true;
-
     public AnswerD() {
         
     }
     
-    public static void sendMessage(Socket clientConnect,boolean pathExists){
+    public static HttpRequestedPath sendMessage(Socket clientConnect,
+            boolean pathExists, String pathRequest){
         
-        System.err.println("ESTOY LISTO PARA ENVIAR MI MENSAJE DE "
-                + "\nNO EXISTE EL RECURSO BUSCADO EN MINING DE "+
-                "CLIENTE "+clientConnect.getLocalAddress().toString());
+        System.err.println("Capturando el Recurso"
+                + " listo para enviar a Rejector o a Cola"
+                + " "+clientConnect.getLocalAddress().toString());
+        
+        httpRequestedPath = new HttpRequestedPath();
+        
+        parse = new StringTokenizer(pathRequest);
+
+        httpRequestedPath.setMethod(parse.nextToken().toUpperCase()); 
+
+        httpRequestedPath.setFileRequested(parse.nextToken().toLowerCase());
+       
+        
+        return httpRequestedPath;
             
     }
  

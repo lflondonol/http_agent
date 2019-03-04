@@ -1,7 +1,8 @@
 package beliefe;
 
-import desire.AnswerD;
-import desire.ReceiverD;
+import desire.*;
+import beliefe.*;
+import httpagent.HttpRequestedPath;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class ListenerB implements Runnable {
     private static Socket clientConnect;
     private static String pathRequest;
     private static boolean pathExists;
+    private static HttpRequestedPath httpRequestedPath;
 
 
 
@@ -69,8 +71,16 @@ public class ListenerB implements Runnable {
         System.err.println("Conexion "+clientConnect.getLocalAddress().toString());
         
         pathRequest = ReceiverD.callReceiver(clientConnect);
+               
+        /*
+        //Aca iría includo el llamado al componente Mining
+        */
         
-        AnswerD.sendMessage(clientConnect,pathExists); 
+       httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
+               pathRequest);
+       
+       RejectorB.rejectorMessage(clientConnect, httpRequestedPath);
+       
         
     }
 

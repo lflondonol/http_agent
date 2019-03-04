@@ -1,5 +1,5 @@
 /*
- * Sevidor Http básico bajo el conceptos de agentes BDI y blockchain.
+ * Sevidor Http básico bajo el concepto de agentes BDI y blockchain.
  */
 package httpagent;
 

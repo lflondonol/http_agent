@@ -30,7 +30,7 @@ public class Mining {
         //a los archivos planos creados y retorna una respuesta.
         //esto llamaria al componente AnswerD para procesar si da una respuesta
         //rapida sin tener que ir a nuestro módulo de INTENSION
-        //envía dos parámetros (ruta , estado (true or false)
+        //envía dos parámetros (ruta , estado (true or false))
         
         File folder = new File("/Users/luisa/Desktop/Http Agent/http_agent/HttpAgent/src/Repository/Certifiers/");
         File[] listOfFiles = folder.listFiles();
