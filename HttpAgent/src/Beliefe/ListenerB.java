@@ -34,8 +34,6 @@ public class ListenerB implements Runnable {
     }
     
     
-    
-    
     public static Socket callServer(ServerSocket serverConnect) {
          try {
             serverConnect = new ServerSocket(PORT);

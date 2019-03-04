@@ -46,8 +46,6 @@ public class HttpAgent implements Runnable{
     public void run() {
         clientConnect = ListenerB.callServer(serverSocket);
         
-
     }
-
     
 }
