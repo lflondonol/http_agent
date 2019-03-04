@@ -7,6 +7,7 @@ package beliefe;
 
 import httpagent.HttpRequestedPath;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -26,7 +27,7 @@ public class AnswerB {
     public AnswerB() {
     }
     
-    public static void responseClient(Socket clientConnect, 
+    public static void responseClient(BufferedReader in,Socket clientConnect, 
             HttpRequestedPath httpRequestedPath, byte[] fileData){
         
         try {      
@@ -46,6 +47,11 @@ public class AnswerB {
 
             System.out.println("File " + httpRequestedPath.getFileRequested() + 
                     " not found");
+            in.close();			
+            out.close();
+            dataOut.close();
+            clientConnect.close(); // we close socket connection
+            System.err.println("Conexion CERRADA!");
         } catch (IOException ex) {
             Logger.getLogger(AnswerB.class.getName()).log(Level.SEVERE, null, ex);
         }

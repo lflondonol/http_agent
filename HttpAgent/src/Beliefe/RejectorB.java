@@ -28,6 +28,7 @@ public class RejectorB {
         try {
             fileData=httpRequestedPath.
                     fileNotFound(httpRequestedPath.getFileRequested());
+            
         } catch (IOException ex) {
             Logger.getLogger(RejectorB.class.getName()).log(Level.SEVERE, null, ex);
         }

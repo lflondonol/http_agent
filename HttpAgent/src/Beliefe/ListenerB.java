@@ -30,6 +30,7 @@ public class ListenerB implements Runnable {
     private static boolean pathExists;
     private static HttpRequestedPath httpRequestedPath;
     private static byte[] fileData;
+    private static BufferedReader in = null;
 
 
 
@@ -39,7 +40,7 @@ public class ListenerB implements Runnable {
     }
     
     
-    public static Socket callServer(ServerSocket serverConnect) {
+    public static void callServer(ServerSocket serverConnect) {
          try {
             serverConnect = new ServerSocket(PORT);
             System.out.println("Servidor activo. \n Se escucha la conexión por"
@@ -60,7 +61,7 @@ public class ListenerB implements Runnable {
                     ex.getMessage());
         }//try
          
-         return clientConnect;
+         //return clientConnect;
          
             
     }//metodo
@@ -73,7 +74,14 @@ public class ListenerB implements Runnable {
         
         System.err.println("Conexion "+clientConnect.getLocalAddress().toString());
         
-        pathRequest = ReceiverD.callReceiver(clientConnect);
+        try {
+            in = new BufferedReader(new InputStreamReader(
+                    clientConnect.getInputStream()));
+        } catch (IOException ex) {
+            Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        pathRequest = ReceiverD.callReceiver(in,clientConnect);
                
         pathExists = Mining.pathExistsInBlockChainContent(clientConnect, pathRequest);
 
@@ -82,9 +90,9 @@ public class ListenerB implements Runnable {
                pathRequest);
        
        fileData=RejectorB.rejectorMessage(clientConnect, httpRequestedPath);
+         
+       AnswerB.responseClient(in,clientConnect, httpRequestedPath, fileData);
        
-       
-       AnswerB.responseClient(clientConnect, httpRequestedPath, fileData);
         
     }
 

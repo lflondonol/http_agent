@@ -34,17 +34,17 @@ public class HttpAgent implements Runnable{
     
     public static void main(String[] args) {
             
-            HttpAgent httpA = new HttpAgent();
-            
-            Thread thread = new Thread(httpA);
-            thread.start();
-        
+//            HttpAgent httpA = new HttpAgent();
+//            
+//            Thread thread = new Thread(httpA);
+//            thread.start();
+            ListenerB.callServer(serverSocket);
 
     }
 
     @Override
     public void run() {
-        clientConnect = ListenerB.callServer(serverSocket);
+        //clientConnect = ListenerB.callServer(serverSocket);
         
     }
     

@@ -32,13 +32,11 @@ public class ReceiverD{
 
     
 
-    public static String callReceiver(Socket connect) {
+    public static String callReceiver(BufferedReader in,Socket connect) {
         
-        BufferedReader in = null;
         
         try {
-            in = new BufferedReader(new InputStreamReader(
-            connect.getInputStream()));
+            
             pathRequest = in.readLine();
             System.err.println("Http Request:"+pathRequest);
             /*

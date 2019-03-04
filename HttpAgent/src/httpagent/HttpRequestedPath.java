@@ -89,6 +89,7 @@ public class HttpRequestedPath {
 		
 		dataOut.write(fileData, 0, fileLength);
 		dataOut.flush();
+                 // we close socket connection
 			
 	}
     
