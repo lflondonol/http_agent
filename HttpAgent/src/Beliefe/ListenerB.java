@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class ListenerB implements Runnable {
     
-    static final int PORT = 8087;
+    static final int PORT = 8097;
     
     
     private static Socket clientConnect;
