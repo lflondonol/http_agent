@@ -12,6 +12,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -73,9 +75,8 @@ public class ListenerB implements Runnable {
         
         pathRequest = ReceiverD.callReceiver(clientConnect);
                
-        /*
-        //Aca iría includo el llamado al componente Mining
-        */
+        pathExists = Mining.pathExistsInBlockChainContent(clientConnect, pathRequest);
+
         
        httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
                pathRequest);

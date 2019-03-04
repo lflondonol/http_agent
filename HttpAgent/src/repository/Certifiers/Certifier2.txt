@@ -1,0 +1,4 @@
+/%7Esmith/home.html
+/%7esmith/home.html
+/~smith/home.html
+/pub/WWW/TheProject.html

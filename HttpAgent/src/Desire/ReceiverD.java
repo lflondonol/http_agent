@@ -50,8 +50,7 @@ public class ReceiverD{
             ruta valida, me imagino que esto nos debe retornar un booleano
             entonces instanciaríamos el método validator de la clase Mining
             */
-            //Mining.pathExistsInBlockChainContent(connect, input);
-            
+        
             
             
         

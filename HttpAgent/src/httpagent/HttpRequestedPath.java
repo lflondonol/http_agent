@@ -11,7 +11,8 @@ public class HttpRequestedPath {
     
     private String fileRequested;
     private String method;
-    private static final File WEB_ROOT = new File("/Users/JohnFlorez/NetBeansProjects/HttpServerConcept/src/response/");
+    private static final File MY_DIR = new File(".");
+    private static final File WEB_ROOT = new File(MY_DIR.getAbsolutePath()+"/src/repository/");
     private static final String DEFAULT_FILE = "index.html";
     private static final String FILE_NOT_FOUND = "404.html";
     private static final String METHOD_NOT_SUPPORTED = "not-supported.html";
