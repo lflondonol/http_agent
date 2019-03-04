@@ -24,11 +24,8 @@ import java.util.logging.Logger;
  */
 public class AnswerD {
     
-     private static String fileRequested = null;
-//     
-		
+     private static String fileRequested = null; 
      private static HttpRequestedPath httpRequestedPath = null;
-     
      private static StringTokenizer parse;
      
     

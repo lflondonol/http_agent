@@ -27,6 +27,7 @@ public class ListenerB implements Runnable {
     private static String pathRequest;
     private static boolean pathExists;
     private static HttpRequestedPath httpRequestedPath;
+    private static byte[] fileData;
 
 
 
@@ -79,8 +80,10 @@ public class ListenerB implements Runnable {
        httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
                pathRequest);
        
-       RejectorB.rejectorMessage(clientConnect, httpRequestedPath);
+       fileData=RejectorB.rejectorMessage(clientConnect, httpRequestedPath);
        
+       
+       AnswerB.responseClient(clientConnect, httpRequestedPath, fileData);
         
     }
 

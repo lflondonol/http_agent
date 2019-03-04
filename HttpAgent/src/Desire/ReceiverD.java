@@ -35,13 +35,12 @@ public class ReceiverD{
     public static String callReceiver(Socket connect) {
         
         BufferedReader in = null;
-        System.out.println("ddddd");
         
         try {
             in = new BufferedReader(new InputStreamReader(
             connect.getInputStream()));
             pathRequest = in.readLine();
-            System.out.println("Lo que llego fue :"+pathRequest);
+            System.err.println("Http Request:"+pathRequest);
             /*
             En esta parte iría el componente de mining, se captura lo que llego
             recuerden que la entrada lo que recibe es un STRING separado asi

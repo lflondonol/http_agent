@@ -54,7 +54,8 @@ public class Mining {
                 }
             }
         }
-        System.out.println("Path encontrado en esta cantidad de archivos: "+pathFilesFound);
+        System.out.println("Path encontrado en esta cantidad de archivos: "
+                +pathFilesFound);
         
        //luego de validar sucedería esto.
         
