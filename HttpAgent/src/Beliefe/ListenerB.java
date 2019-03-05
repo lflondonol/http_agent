@@ -93,24 +93,22 @@ public class ListenerB implements Runnable {
         
         pathRequest = ReceiverD.callReceiver(in,clientConnect);
                
-        try {
-            pathExists = Mining.pathExistsInBlockChainContent(clientConnect, pathRequest);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        pathExists = Mining.pathExistsInBlockChainContent(clientConnect, pathRequest);
+
 
         
        httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
                pathRequest);
        
-       //if (pathExists) {
+       if (pathExists) {
            QueueOfPetitions.pushQueuOfPetitions(in,out,dataOut,clientConnect,
                    httpRequestedPath);
               
-        //}else{
-         //RejectorB.rejectorMessage(in,out,dataOut,clientConnect, 
-           //      httpRequestedPath);
-        //}
+        }else{
+         RejectorB.rejectorMessage(in,out,dataOut,clientConnect, 
+                httpRequestedPath);
+        }
        
        
          

@@ -8,21 +8,8 @@
 /contactenos.aspx
 /wiki
 /index.html
-<<<<<<< HEAD
-/
 /hola.html
-sf
-ds
-fds
-f
-df
-sdf
-sdf
-d
-f
-df
-s
-=======
+/404.html
 /marcos.html
 /algun-recurso.php
 /citasInternet.jspx
@@ -33,4 +20,3 @@ s
 /faqs
 /saldo
 /citasInternet/citasInternet.jspx
->>>>>>> 817d2fa120424e260feb6d9dbc138a948d4975a5
