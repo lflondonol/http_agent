@@ -87,9 +87,7 @@ public class ListenerB implements Runnable {
                     clientConnect.getInputStream()));
             out = new PrintWriter(clientConnect.getOutputStream());
             dataOut = new BufferedOutputStream(clientConnect.getOutputStream());
-        } catch (IOException ex) {
-            Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+     
         
         pathRequest = ReceiverD.callReceiver(in,clientConnect);
                
@@ -111,6 +109,9 @@ public class ListenerB implements Runnable {
          //RejectorB.rejectorMessage(in,out,dataOut,clientConnect, 
            //      httpRequestedPath);
         //}
+           } catch (IOException ex) {
+            Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
        
          

@@ -43,10 +43,7 @@ public class ActionI {
         System.err.println("ESTE ES MI METODO "+httpRequest.getMethod());
         System.err.println("ESTA ES MI RUTA "+httpRequest.getFileRequested());
         // we support only GET and HEAD methods, we check
-        if (!httpRequest.getMethod().equals("GET") &&  
-                !httpRequest.getMethod().equals("POST") &&
-                !httpRequest.getMethod().equals("PUT") &&
-                !httpRequest.getMethod().equals("DELETE")) {
+        if (!httpRequest.getMethod().equals("GET")) {
             System.out.println("ENTRE A NO SOPORTADOOOOS");
                 if (verbose) {
                     status_code = 501;
@@ -55,16 +52,23 @@ public class ActionI {
                             , clientConnect);
                }
 
-        } else {
+        } else if(httpRequest.getMethod().equals("GET") &&
+                (httpRequest.getFileRequested().equals("/")||
+                httpRequest.getFileRequested().equals("/index.html"))){
                 
                 status_code = 200;
                 // GET or HEAD method
-                System.out.println("ENTRE ACAAAAAAAAAAAA");
+                System.out.println("ENTRE A METODOS SOPORTADOS");
                  AnswerB.fileFound(in, out, dataOut, 
                          httpRequest.getFileRequested(), 
                          clientConnect, 
                          httpRequest.getMethod());
 
+            }else{
+                System.out.println("ENTRE A RUTA NO VALIDA");
+                AnswerB.fileNotFound(in,out,dataOut,
+                            httpRequest.getFileRequested(),
+                            clientConnect);
             }
 
             } catch (FileNotFoundException fnfe) {
