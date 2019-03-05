@@ -1,0 +1,13 @@
+/%7Esmith/home.html
+/%7esmith/home.html
+/~smith/home.html
+/pub/WWW/TheProject.html
+/index.html
+/contactenos
+/faqs
+/contactenos.aspx
+/admin.jspx
+/algun-recurso.php
+/Hello.html
+/wiki
+/certificados.aspx

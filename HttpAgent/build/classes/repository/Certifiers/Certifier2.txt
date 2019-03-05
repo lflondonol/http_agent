@@ -2,3 +2,12 @@
 /%7esmith/home.html
 /~smith/home.html
 /pub/WWW/TheProject.html
+/index.html
+/citasInternet.jspx
+/help.html
+/Que-es.aspx
+/helloWorld.html
+/global.jspx
+/test.php
+/marcos.html
+/saldo

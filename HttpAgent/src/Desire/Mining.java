@@ -11,6 +11,10 @@ import java.net.Socket;
 import java.util.Scanner;
 import desire.AnswerD;
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,34 +25,49 @@ import java.util.logging.Logger;
 public class Mining {
     
     private static boolean pathExists;
+    private static boolean validationResult;
     //private AnswerD answerD;
 
     public Mining() {
     }
     
-    public static boolean validateUriRequest(String pathRequested){
+    public static boolean validateUriRequest(String pathRequested) throws URISyntaxException{
        
         String[] separateString = pathRequested.split(" ");
         String verb = separateString[0];
         String uri = separateString[1];
-
         
-    if(255 < uri.length()){
-        System.out.println("414 - Request-URI Too Long");
+        if (!urlValidator(uri)){
+            System.out.println("400 - Bad Request");
+            validationResult = false;  
+        }else if(255 < uri.length()){
+            System.out.println("414 - Request-URI Too Long");
+             validationResult = false;
+        }else if( !verb.equals("GET")){
+            System.out.println("501- Not Implemented");
+            validationResult = false;
+        }else{
+            validationResult = true;
+        }
+          
+    return validationResult;
     }
     
-    if( !verb.equals("GET")){
-        System.out.println("501- Not Implemented");
-    }
-       
-    //Validar URL   System.out.println("400 - Bad Request");
-   
-    return true;
+    public static boolean urlValidator(String uri)
+    {
+        /*validación de url*/
+        try {
+            new URL(uri).toURI();
+            return true;
+        }
+        catch (URISyntaxException | MalformedURLException exception) {
+            return false;
+        }
     }
    
     
     public static boolean pathExistsInBlockChainContent(Socket connect, 
-            String pathRequested){
+            String pathRequested) throws URISyntaxException{
     try {
         if(validateUriRequest(pathRequested)){
             String[] separateString = pathRequested.split(" ");

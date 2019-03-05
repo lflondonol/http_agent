@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,7 +84,11 @@ public class ListenerB implements Runnable {
         
         pathRequest = ReceiverD.callReceiver(in,clientConnect);
                
-        pathExists = Mining.pathExistsInBlockChainContent(clientConnect, pathRequest);
+        try {
+            pathExists = Mining.pathExistsInBlockChainContent(clientConnect, pathRequest);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         
        httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
