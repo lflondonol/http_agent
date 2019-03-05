@@ -1,13 +1,14 @@
-x
-y
-z
-s
-d
-f
-f
-g
-g
+/home.js
+/help.html
+/home.html
+/admin.jspx
+/Que-es.aspx
+/global.jspx
+/helloWorld.html
+/contactenos.aspx
+/wiki
 /index.html
+<<<<<<< HEAD
 /
 /hola.html
 sf
@@ -21,3 +22,15 @@ d
 f
 df
 s
+=======
+/marcos.html
+/algun-recurso.php
+/citasInternet.jspx
+/test.php
+/contactenos
+/certificados.aspx
+/Hello.html
+/faqs
+/saldo
+/citasInternet/citasInternet.jspx
+>>>>>>> 817d2fa120424e260feb6d9dbc138a948d4975a5
