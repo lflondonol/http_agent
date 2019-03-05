@@ -136,7 +136,7 @@ public class AnswerB {
 		String content = getContentType(fileRequested);
                 
 		byte[] fileData = readFileData(file, fileLength);
-		if (method.equals("GET")) {
+		if (method.equals("GET")||method.equals("PUT")||method.equals("POST")||method.equals("DELETE")) {
                     out.println("HTTP/1.1 200 OK");
                     out.println("Server: Java HTTP Agent Server: 1.0");
                     out.println("Date: " + new Date());
