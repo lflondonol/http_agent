@@ -21,25 +21,34 @@ import java.util.logging.Logger;
 public class Mining {
     
     private static boolean pathExists;
+    private static String verb;
+    private static String uri;
+    private static String[] separateString;
     //private AnswerD answerD;
 
     public Mining() {
     }
     
     public static boolean validateUriRequest(String pathRequested){
-       
-        String[] separateString = pathRequested.split(" ");
-        String verb = separateString[0];
-        String uri = separateString[1];
+        try{
+            
+            if (!pathRequested.equals(null)) {
+                separateString = pathRequested.split(" ");
+                verb = separateString[0];
+                uri = separateString[1];
 
-        
-    if(255 < uri.length()){
-        System.out.println("414 - Request-URI Too Long");
-    }
-    
-    if( !verb.equals("GET")){
-        System.out.println("501- Not Implemented");
-    }
+                if(255 < uri.length()){
+                    System.out.println("414 - Request-URI Too Long");
+                }
+
+                if( !verb.equals("GET")){
+                    System.out.println("501- Not Implemented");
+            }
+        }
+            
+        }catch(NullPointerException npe){
+            System.out.println(" ");
+        }
        
     //Validar URL   System.out.println("400 - Bad Request");
    
@@ -51,8 +60,8 @@ public class Mining {
             String pathRequested){
     try {
         if(validateUriRequest(pathRequested)){
-            String[] separateString = pathRequested.split(" ");
-            String uri = separateString[1];
+            //String[] separateString = pathRequested.split(" ");
+            //String uri = separateString[1];
             File myDir = new File(".");
             File folder = new File(myDir.getAbsolutePath()+"/src/repository/Certifiers/");
             File[] listOfFiles = folder.listFiles();

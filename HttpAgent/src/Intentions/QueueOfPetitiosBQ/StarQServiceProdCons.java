@@ -17,6 +17,7 @@ public class StarQServiceProdCons {
         QConsumer QCons = new QConsumer(queueMsg);
         //Inicializa el productor de mensajes de la Cola
         new Thread(QProd).start();
+        
         //Inicializa el consumidor de mensajes de la cola
         new Thread(QCons).start();
     }

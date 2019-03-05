@@ -3,11 +3,15 @@
  */
 package httpagent;
 
+import Intentions.QueueOfPetitiosBQ.StarQServiceProdCons;
 import beliefe.*;
 import desire.*;
 //import intention.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,17 +38,24 @@ public class HttpAgent implements Runnable{
     
     public static void main(String[] args) {
             
-//            HttpAgent httpA = new HttpAgent();
-//            
-//            Thread thread = new Thread(httpA);
-//            thread.start();
-            ListenerB.callServer(serverSocket);
+            HttpAgent httpA = new HttpAgent();
+            
+            Thread thread = new Thread(httpA);
+            thread.start();
+            //ListenerB.callServer(serverSocket);
+            //Inicializar la cola de mensajes
+            //StarQServiceProdCons.StarQServiceProdCons();
+            //Queue q = new Queue();
 
     }
 
     @Override
     public void run() {
-        //clientConnect = ListenerB.callServer(serverSocket);
+        try {
+            clientConnect = ListenerB.callServer(serverSocket);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HttpAgent.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     

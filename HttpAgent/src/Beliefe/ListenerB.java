@@ -1,5 +1,9 @@
 package beliefe;
 
+import Intention.QueueOfPetitions;
+import Intentions.QueueOfPetitiosBQ.QMessage;
+import Intentions.QueueOfPetitiosBQ.QProducer;
+import Intentions.QueueOfPetitiosBQ.StarQServiceProdCons;
 import desire.*;
 import beliefe.*;
 import httpagent.HttpRequestedPath;
@@ -22,7 +26,7 @@ import java.util.logging.Logger;
 
 public class ListenerB implements Runnable {
     
-    static final int PORT = 8097;
+    static final int PORT = 8099;
     
     
     private static Socket clientConnect;
@@ -31,6 +35,8 @@ public class ListenerB implements Runnable {
     private static HttpRequestedPath httpRequestedPath;
     private static byte[] fileData;
     private static BufferedReader in = null;
+    private static PrintWriter out = null; 
+    private static BufferedOutputStream dataOut = null;
 
 
 
@@ -40,7 +46,7 @@ public class ListenerB implements Runnable {
     }
     
     
-    public static void callServer(ServerSocket serverConnect) {
+    public static Socket callServer(ServerSocket serverConnect) throws InterruptedException {
          try {
             serverConnect = new ServerSocket(PORT);
             System.out.println("Servidor activo. \n Se escucha la conexión por"
@@ -54,6 +60,7 @@ public class ListenerB implements Runnable {
                 
                 Thread thread = new Thread(miServidor);
                 thread.start();
+                //Thread.sleep(30);
             }
             
         } catch (IOException ex) {
@@ -61,7 +68,7 @@ public class ListenerB implements Runnable {
                     ex.getMessage());
         }//try
          
-         //return clientConnect;
+         return clientConnect;
          
             
     }//metodo
@@ -70,13 +77,15 @@ public class ListenerB implements Runnable {
     public void run() {
         
         System.out.println("Conexion IP: "+
-                        clientConnect.getLocalAddress().toString());
+                        clientConnect.getInetAddress().toString());
         
         System.err.println("Conexion "+clientConnect.getLocalAddress().toString());
         
         try {
             in = new BufferedReader(new InputStreamReader(
                     clientConnect.getInputStream()));
+            out = new PrintWriter(clientConnect.getOutputStream());
+            dataOut = new BufferedOutputStream(clientConnect.getOutputStream());
         } catch (IOException ex) {
             Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,9 +98,18 @@ public class ListenerB implements Runnable {
        httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
                pathRequest);
        
-       fileData=RejectorB.rejectorMessage(clientConnect, httpRequestedPath);
+       //if (pathExists) {
+           QueueOfPetitions.pushQueuOfPetitions(in,out,dataOut,clientConnect,
+                   httpRequestedPath);
+              
+        //}else{
+         //RejectorB.rejectorMessage(in,out,dataOut,clientConnect, 
+           //      httpRequestedPath);
+        //}
+       
+       
          
-       AnswerB.responseClient(in,clientConnect, httpRequestedPath, fileData);
+       //AnswerB.responseClient(in,clientConnect, httpRequestedPath, fileData);
        
         
     }

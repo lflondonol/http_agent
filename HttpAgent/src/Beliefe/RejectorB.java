@@ -4,6 +4,7 @@ import httpagent.HttpRequestedPath;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -22,19 +23,20 @@ public class RejectorB {
     }
 
     
-    public static byte[] rejectorMessage(Socket clientConnect,
+    public static void rejectorMessage(BufferedReader in ,
+                PrintWriter out, OutputStream dataOut,Socket clientConnect,
             HttpRequestedPath httpRequestedPath){
         
         try {
-            fileData=httpRequestedPath.
-                    fileNotFound(httpRequestedPath.getFileRequested());
+            AnswerB.
+                    fileNotFound(in,out,dataOut,
+                            httpRequestedPath.getFileRequested(),
+                            clientConnect);
+            
             
         } catch (IOException ex) {
             Logger.getLogger(RejectorB.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
-        return fileData;
         
     }
 }

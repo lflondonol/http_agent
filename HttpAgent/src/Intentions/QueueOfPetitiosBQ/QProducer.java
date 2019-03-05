@@ -8,8 +8,11 @@ package Intentions.QueueOfPetitiosBQ;
  * @Fecha       Marzo 3 de 2019
  */
 
+import desire.AnswerD;
 import java.util.concurrent.BlockingQueue;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
         
 public class QProducer implements Runnable {
     private String msgQ;
@@ -18,17 +21,38 @@ public class QProducer implements Runnable {
     public QProducer(BlockingQueue<QMessage> qMsg){
         this.queueMsg = qMsg;
     }
+
+    
+
+    public String getMsgQ() {
+        return msgQ;
+    }
+
+    public void setMsgQ(String msgQ) {
+        this.msgQ = msgQ;
+    }
+    
+    
     
     @Override
     public void run() {
         //Para producir mensajes
-        while(!"exit".equals(msgQ)) {    
+        while(true) {    
             QMessage qMsg;
+            
+            //AnswerD ad = new AnswerD();
+            
+            msgQ = AnswerD.getPathRequest();
            
-            System.out.println ("Mensaje:");
-            msgQ = "";
-            Scanner entradaEscaner = new Scanner (System.in); 
-            msgQ = entradaEscaner.nextLine (); 
+        try {
+            //System.out.println ("Mensaje:");
+            //msgQ = "";
+            //Scanner entradaEscaner = new Scanner (System.in);
+            //msgQ = entradaEscaner.nextLine (); 
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(QProducer.class.getName()).log(Level.SEVERE, null, ex);
+        }
             System.out.println ("Entrada recibida por teclado es: \"" + msgQ +"\"");            
             qMsg = new QMessage(msgQ);            
             
@@ -39,6 +63,6 @@ public class QProducer implements Runnable {
                 e.printStackTrace();
             }
         }
-    }
+   }
 }    
 

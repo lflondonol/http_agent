@@ -38,19 +38,7 @@ public class ReceiverD{
         try {
             
             pathRequest = in.readLine();
-            System.err.println("Http Request:"+pathRequest);
-            /*
-            En esta parte iría el componente de mining, se captura lo que llego
-            recuerden que la entrada lo que recibe es un STRING separado asi
-            METODO[ESPACIO]SOLICITUD , Ejemplo1 -> GET / 
-            Ejemplo2 -> GET /index.html las cuales son las caracteristicas
-            suficientes para validar en el concepto de BlockChain si es una 
-            ruta valida, me imagino que esto nos debe retornar un booleano
-            entonces instanciaríamos el método validator de la clase Mining
-            */
-        
-            
-            
+            System.err.println("Http Request:"+pathRequest);     
         
         } catch (IOException ex) {
             Logger.getLogger(ReceiverD.class.getName()).log(Level.SEVERE, 
