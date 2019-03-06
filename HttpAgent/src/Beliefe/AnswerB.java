@@ -8,8 +8,10 @@ package beliefe;
 import httpagent.HttpRequestedPath;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -51,10 +53,15 @@ public class AnswerB {
 		byte[] fileData = readFileData(file, fileLength);
 		
 		out.println("HTTP/1.1 404 File Not Found");
+                saveLog("HTTP/1.1 404 File Not Found");
 		out.println("Server: Java HTTP Server Agent : 1.0");
+                saveLog("Server: Java HTTP Server Agent : 1.0");
 		out.println("Date: " + new Date());
+                saveLog("Date: " + new Date());
 		out.println("Content-type: " + content);
+                saveLog("Content-type: " + content);
 		out.println("Content-length: " + fileLength);
+                saveLog("Content-length: " + fileLength);
 		out.println(); // blank line between headers and content, very important !
 		out.flush(); // flush character output stream buffer
 		
@@ -77,10 +84,15 @@ public class AnswerB {
 		byte[] fileData = readFileData(file, fileLength);
 		
 		out.println("HTTP/1.1 501 Metho Not Implemented");
+                saveLog("HTTP/1.1 501 Metho Not Implemented");
 		out.println("Server: Java HTTP Server Agent : 1.0");
+                saveLog("Server: Java HTTP Server Agent : 1.0");
 		out.println("Date: " + new Date());
+                saveLog("Date: " + new Date());
 		out.println("Content-type: " + content);
+                saveLog("Content-type: " + content);
 		out.println("Content-length: " + fileLength);
+                saveLog("Content-length: " + fileLength);
 		out.println(); // blank line between headers and content, very important !
 		out.flush(); // flush character output stream buffer
 		
@@ -138,10 +150,15 @@ public class AnswerB {
 		byte[] fileData = readFileData(file, fileLength);
 		if (method.equals("GET")||method.equals("PUT")||method.equals("POST")||method.equals("DELETE")) {
                     out.println("HTTP/1.1 200 OK");
+                    saveLog("HTTP/1.1 200 OK");
                     out.println("Server: Java HTTP Agent Server: 1.0");
+                    saveLog("Server: Java HTTP Agent Server: 1.0");
                     out.println("Date: " + new Date());
+                    saveLog("Date: " + new Date());
                     out.println("Content-type: " + content);
+                    saveLog("Content-type: " + content);
                     out.println("Content-length: " + fileLength);
+                    saveLog("Content-length: " + fileLength);
                     out.println(); // blank line between headers and content, very important !
                     out.flush(); // flush character output stream buffer
 
@@ -149,5 +166,21 @@ public class AnswerB {
                     dataOut.flush();
                 }                
 	}
+        
+        public static void saveLog(String text){
+ 
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(MY_DIR.getAbsolutePath()+"/src/repository/Log/Log.txt", true));
+                writer.append(' ');
+                writer.newLine();
+                writer.append(text);
+
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(AnswerB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+	}   
+                   
+   }
     
-}
+
