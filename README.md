@@ -84,4 +84,5 @@ Las restricciones del proyecto son dadas por la evaluación de la práctica, en 
 
 # ENTREGA 2
 - https://github.com/lflondonol/http_agent/wiki/Documento-Arquitectura-y-Dise%C3%B1o-de-Servidor-HTTP---httpAgent
+- https://github.com/lflondonol/http_agent/wiki/Instrucciones-de-Uso
 
