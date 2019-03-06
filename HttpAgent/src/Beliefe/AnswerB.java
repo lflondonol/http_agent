@@ -141,13 +141,14 @@ public class AnswerB {
                         fileRequested += DEFAULT_FILE;
                 }
                 
-		File file = new File(WEB_ROOT, DEFAULT_FILE);
+		File file = new File(WEB_ROOT, fileRequested);
 		int fileLength = (int) file.length();
 		String content = getContentType(fileRequested);
                 
-		byte[] fileData = readFileData(file, fileLength);
+		
 		if (method.equals("GET")||method.equals("PUT")
                         ||method.equals("POST")||method.equals("DELETE")) {
+                    byte[] fileData = readFileData(file, fileLength);
                     out.println("HTTP/1.1 200 OK");
                     saveLog("HTTP/1.1 200 OK");
                     out.println("Server: Java HTTP Agent Server: 1.0");
@@ -163,7 +164,20 @@ public class AnswerB {
 
                     dataOut.write(fileData, 0, fileLength);
                     dataOut.flush();
-                }                
+                } else{
+                    out.println("HTTP/1.1 200 OK");
+                    saveLog("HTTP/1.1 200 OK");
+                    out.println("Server: Java HTTP Agent Server: 1.0");
+                    saveLog("Server: Java HTTP Agent Server: 1.0");
+                    out.println("Date: " + new Date());
+                    saveLog("Date: " + new Date());
+                    out.println("Content-type: " + content);
+                    saveLog("Content-type: " + content);
+                    out.println("Content-length: " + fileLength);
+                    saveLog("Content-length: " + fileLength);
+                    out.println();
+                    out.flush(); 
+                }               
 	}
         
         public static void saveLog(String text){
