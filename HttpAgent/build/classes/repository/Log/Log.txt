@@ -1,0 +1,16 @@
+ 
+HTTP/1.1 501 Metho Not Implemented 
+HTTP/1.1 501 Metho Not Implemented 
+Server: Java HTTP Server Agent : 1.0 
+Server: Java HTTP Server Agent : 1.0 
+Date: Tue Mar 05 20:14:22 COT 2019 
+Date: Tue Mar 05 20:14:22 COT 2019 
+Content-type: text/html 
+Content-type: text/html 
+Content-length: 306 
+Content-length: 306 
+HTTP/1.1 501 Metho Not Implemented 
+Server: Java HTTP Server Agent : 1.0 
+Date: Tue Mar 05 20:14:32 COT 2019 
+Content-type: text/html 
+Content-length: 306
