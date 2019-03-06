@@ -1,0 +1,479 @@
+{
+	"info": {
+		"_postman_id": "6109306c-8e77-4e25-b41a-30b24dd89d64",
+		"name": "Pruebas de Integración Http Agent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET VALIDO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3740b80-1195-418c-9ed0-20cd61449986",
+						"exec": [
+							"",
+							"pm.sendRequest(\"http://localhost:8099/index.html\", function (err, response) {",
+							"    console.log(response.json());",
+							"});",
+							"pm.test(\"El código del estado resultante es 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"La respuesta contiene el string: HOLA HTTP AGENT\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"HOLA HTTP AGENT\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type esta presente\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST VALIDO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68943579-3680-4ea2-a21f-19ad502450bd",
+						"exec": [
+							"pm.sendRequest(\"http://localhost:8099/index.html\", function (err, response) {",
+							"    console.log(response.json());",
+							"});",
+							"",
+							"pm.test(\"Exitoso POST\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NO CERTIFICADO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "02ee6fa5-09d6-4a68-addd-800a47e6da31",
+						"exec": [
+							"pm.sendRequest(\"http://localhost:8099/index.html\", function (err, response) {",
+							"    console.log(response.json());",
+							"});",
+							"",
+							"pm.test(\"El código del estado resultante es 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"La respuesta contiene el string: ERROR 404 File Not Found\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ERROR 404 File Not Found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/indexconbugs.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"indexconbugs.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT VALIDO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a5e38e7-13fc-4545-af56-34a9d5f35cee",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OPTION VALID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab3fd824-d356-4500-bd5f-1c4ef5c179fa",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HEAD VALIDO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7280d713-a4bc-4a4c-9300-355b4c0cf655",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE VALIDO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a4fba52d-c910-4b05-ae8d-765918386612",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NO SOPORTADO 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e65e3fe-cbc9-4b90-8178-f0e71157201e",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 501\", function () {",
+							"    pm.response.to.have.status(501);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "LINK",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NO SOPORTADO 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d809a422-90a2-4c65-8f0d-6cb8c0744ad8",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 501\", function () {",
+							"    pm.response.to.have.status(501);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PURGE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NO SOPORTADO 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "29056166-18cc-4268-a7ff-811fc4f048e8",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 501\", function () {",
+							"    pm.response.to.have.status(501);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "VIEW",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NO SOPORTADO 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3488f36f-e07b-48de-9ab2-3e6f464dc6ae",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 501\", function () {",
+							"    pm.response.to.have.status(501);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "UNLOCK",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NO SOPORTADO 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "99d68d02-3b1a-49b2-afa1-b4905958e6e1",
+						"exec": [
+							"pm.test(\"El código del estado resultante es 501\", function () {",
+							"    pm.response.to.have.status(501);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PROPFIND",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8099/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
