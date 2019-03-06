@@ -17,7 +17,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -34,6 +36,7 @@ public class ActionI {
                 PrintWriter out, OutputStream dataOut,Socket clientConnect,
             Queue queueOfPetitions){
         
+        List<String> httpVerbs = Arrays.asList("GET","POST","PUT","DELETE","OPTIONS","HEAD","TRACE","CONNECT");
         HttpRequestedPath httpRequest = new HttpRequestedPath();
         
     try {
@@ -43,7 +46,7 @@ public class ActionI {
         System.err.println("ESTE ES MI METODO "+httpRequest.getMethod());
         System.err.println("ESTA ES MI RUTA "+httpRequest.getFileRequested());
         // we support only GET and HEAD methods, we check
-        if (!httpRequest.getMethod().equals("GET")) {
+        if (!httpVerbs.contains(httpRequest.getMethod())) {
             System.out.println("ENTRE A NO SOPORTADOOOOS");
                 if (verbose) {
                     status_code = 501;
@@ -52,7 +55,7 @@ public class ActionI {
                             , clientConnect);
                }
 
-        } else if(httpRequest.getMethod().equals("GET") &&
+        } else if(httpVerbs.contains(httpRequest.getMethod())&&
                 (httpRequest.getFileRequested().equals("/")||
                 httpRequest.getFileRequested().equals("/index.html"))){
                 
