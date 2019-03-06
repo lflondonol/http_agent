@@ -1,21 +1,15 @@
 package beliefe;
 
 import Intention.QueueOfPetitions;
-import Intentions.QueueOfPetitiosBQ.QMessage;
-import Intentions.QueueOfPetitiosBQ.QProducer;
-import Intentions.QueueOfPetitiosBQ.StarQServiceProdCons;
 import desire.*;
-import beliefe.*;
 import httpagent.HttpRequestedPath;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +41,8 @@ public class ListenerB implements Runnable {
     }
     
     
-    public static Socket callServer(ServerSocket serverConnect) throws InterruptedException {
+    public static Socket callServer(ServerSocket serverConnect) 
+            throws InterruptedException {
          try {
             serverConnect = new ServerSocket(PORT);
             System.out.println("Servidor activo. \n Se escucha la conexión por"
@@ -80,7 +75,8 @@ public class ListenerB implements Runnable {
         System.out.println("Conexion IP: "+
                         clientConnect.getInetAddress().toString());
         
-        System.err.println("Conexion "+clientConnect.getLocalAddress().toString());
+        System.err.println("Conexion "+clientConnect.
+                getLocalAddress().toString());
         
         try {
             in = new BufferedReader(new InputStreamReader(
@@ -92,7 +88,8 @@ public class ListenerB implements Runnable {
         pathRequest = ReceiverD.callReceiver(in,clientConnect);
                
 
-        pathExists = Mining.pathExistsInBlockChainContent(clientConnect, pathRequest);
+        pathExists = Mining.pathExistsInBlockChainContent(clientConnect, 
+                pathRequest);
 
 
         
@@ -109,7 +106,8 @@ public class ListenerB implements Runnable {
            //      httpRequestedPath);
         //}
            } catch (IOException ex) {
-            Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListenerB.class.getName())
+                    .log(Level.SEVERE, null, ex);
        
            }
        //AnswerB.responseClient(in,clientConnect, httpRequestedPath, fileData);

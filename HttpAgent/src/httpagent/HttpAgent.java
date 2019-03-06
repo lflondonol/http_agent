@@ -3,13 +3,10 @@
  */
 package httpagent;
 
-import Intentions.QueueOfPetitiosBQ.StarQServiceProdCons;
 import beliefe.*;
-import desire.*;
 //import intention.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

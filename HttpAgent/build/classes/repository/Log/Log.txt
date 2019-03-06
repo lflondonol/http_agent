@@ -1,16 +1,110 @@
  
-HTTP/1.1 501 Metho Not Implemented 
-HTTP/1.1 501 Metho Not Implemented 
-Server: Java HTTP Server Agent : 1.0 
-Server: Java HTTP Server Agent : 1.0 
-Date: Tue Mar 05 20:14:22 COT 2019 
-Date: Tue Mar 05 20:14:22 COT 2019 
-Content-type: text/html 
-Content-type: text/html 
-Content-length: 306 
-Content-length: 306 
-HTTP/1.1 501 Metho Not Implemented 
-Server: Java HTTP Server Agent : 1.0 
-Date: Tue Mar 05 20:14:32 COT 2019 
-Content-type: text/html 
-Content-length: 306
+HTTP/1.1 200 OK
+ 
+Server: Java HTTP Agent Server: 1.0
+ 
+Date: Tue Mar 05 22:50:33 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 267
+ 
+HTTP/1.1 404 File Not Found
+ 
+Server: Java HTTP Server Agent : 1.0
+ 
+Date: Tue Mar 05 22:51:08 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 466
+ 
+HTTP/1.1 200 OK
+ 
+Server: Java HTTP Agent Server: 1.0
+ 
+Date: Tue Mar 05 22:51:58 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 267
+ 
+HTTP/1.1 501 Metho Not Implemented
+ 
+Server: Java HTTP Server Agent : 1.0
+ 
+Date: Tue Mar 05 22:52:15 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 298
+ 
+HTTP/1.1 200 OK
+ 
+Server: Java HTTP Agent Server: 1.0
+ 
+Date: Tue Mar 05 22:52:20 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 267
+ 
+HTTP/1.1 404 File Not Found
+ 
+Server: Java HTTP Server Agent : 1.0
+ 
+Date: Tue Mar 05 22:52:30 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 466
+ 
+HTTP/1.1 200 OK
+ 
+Server: Java HTTP Agent Server: 1.0
+ 
+Date: Tue Mar 05 23:08:17 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 267
+ 
+HTTP/1.1 404 File Not Found
+ 
+Server: Java HTTP Server Agent : 1.0
+ 
+Date: Tue Mar 05 23:08:30 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 466
+ 
+HTTP/1.1 404 File Not Found
+ 
+Server: Java HTTP Server Agent : 1.0
+ 
+Date: Tue Mar 05 23:08:44 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 466
+ 
+HTTP/1.1 200 OK
+ 
+Server: Java HTTP Agent Server: 1.0
+ 
+Date: Tue Mar 05 23:09:09 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 267
+ 
+HTTP/1.1 200 OK
+ 
+Server: Java HTTP Agent Server: 1.0
+ 
+Date: Tue Mar 05 23:09:14 COT 2019
+ 
+Content-type: text/html
+ 
+Content-length: 267

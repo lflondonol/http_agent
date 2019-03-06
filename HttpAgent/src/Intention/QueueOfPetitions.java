@@ -24,7 +24,7 @@ public class QueueOfPetitions {
             HttpRequestedPath httpRequestedPath){
         
         Queue<HttpRequestedPath> queuePetitions = 
-                new LinkedList<HttpRequestedPath>();
+                new LinkedList<>();
         
         queuePetitions.add(httpRequestedPath);
         

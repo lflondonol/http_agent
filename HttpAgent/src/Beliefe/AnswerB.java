@@ -5,8 +5,6 @@
  */
 package beliefe;
 
-import httpagent.HttpRequestedPath;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -93,8 +91,8 @@ public class AnswerB {
                 saveLog("Content-type: " + content);
 		out.println("Content-length: " + fileLength);
                 saveLog("Content-length: " + fileLength);
-		out.println(); // blank line between headers and content, very important !
-		out.flush(); // flush character output stream buffer
+		out.println();
+		out.flush(); 
 		
 		dataOut.write(fileData, 0, fileLength);
 		dataOut.flush();
@@ -148,7 +146,8 @@ public class AnswerB {
 		String content = getContentType(fileRequested);
                 
 		byte[] fileData = readFileData(file, fileLength);
-		if (method.equals("GET")||method.equals("PUT")||method.equals("POST")||method.equals("DELETE")) {
+		if (method.equals("GET")||method.equals("PUT")
+                        ||method.equals("POST")||method.equals("DELETE")) {
                     out.println("HTTP/1.1 200 OK");
                     saveLog("HTTP/1.1 200 OK");
                     out.println("Server: Java HTTP Agent Server: 1.0");
@@ -159,8 +158,8 @@ public class AnswerB {
                     saveLog("Content-type: " + content);
                     out.println("Content-length: " + fileLength);
                     saveLog("Content-length: " + fileLength);
-                    out.println(); // blank line between headers and content, very important !
-                    out.flush(); // flush character output stream buffer
+                    out.println();
+                    out.flush(); 
 
                     dataOut.write(fileData, 0, fileLength);
                     dataOut.flush();
@@ -170,14 +169,18 @@ public class AnswerB {
         public static void saveLog(String text){
  
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(MY_DIR.getAbsolutePath()+"/src/repository/Log/Log.txt", true));
+                BufferedWriter writer = new BufferedWriter(
+                        new FileWriter(MY_DIR.getAbsolutePath()
+                                +"/src/repository/Log/Log.txt", true));
                 writer.append(' ');
                 writer.newLine();
                 writer.append(text);
+                writer.append('\n');
 
                 writer.close();
             } catch (IOException ex) {
-                Logger.getLogger(AnswerB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AnswerB.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
 	}   
                    

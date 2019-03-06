@@ -6,15 +6,9 @@
 package desire;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
-import desire.AnswerD;
 import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,10 +34,11 @@ public class Mining {
     public static boolean pathExistsInBlockChainContent(Socket connect, 
             String pathRequested){
 
-        String[] separateString = pathRequested.split(" ");
-        String uri = separateString[1];
+        separateString = pathRequested.split(" ");
+        uri = separateString[1];
         File myDir = new File(".");
-        File folder = new File(myDir.getAbsolutePath()+"/src/repository/Certifiers/");
+        File folder = new File(myDir.
+                getAbsolutePath()+"/src/repository/Certifiers/");
         File[] listOfFiles = folder.listFiles();
 
         int pathFilesFound = 0;
@@ -61,7 +56,8 @@ public class Mining {
                     }
                 }
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Mining.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Mining.class.getName()).
+                        log(Level.SEVERE, null, ex);
             }
         }
         System.out.println("Uri encontrado esta cantidad de veces: "

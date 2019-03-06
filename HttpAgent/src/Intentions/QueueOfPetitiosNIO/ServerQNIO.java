@@ -48,7 +48,8 @@ public class ServerQNIO extends Thread {
         serverChannel.configureBlocking(false);
 
         // Asociación a los puertos
-        InetSocketAddress listenAddr = new InetSocketAddress((InetAddress)null, this.ePort);
+        InetSocketAddress listenAddr = 
+                new InetSocketAddress((InetAddress)null, this.ePort);
         serverChannel.socket().bind(listenAddr);
         serverChannel.register(this.cSelector, SelectionKey.OP_ACCEPT);
 
@@ -122,8 +123,7 @@ public class ServerQNIO extends Thread {
     private void connect(SelectionKey key) {
         SocketChannel channel = (SocketChannel) key.channel();
         try {
-            channel.finishConnect(); //try to finish connection - if 'false' is returned keep 'OP_CONNECT' registered
-            //store key in 'keys' to be accessable by ID from messenger thread //TODO first get ID
+            channel.finishConnect(); 
             SelectionKey put;
             put = keysID.put(0, key);
         }
@@ -172,7 +172,7 @@ public class ServerQNIO extends Thread {
         while (items.hasNext()) {
             byte[] item = items.next();
             items.remove();
-            //TODO is this correct? -> re-doing write in loop with same buffer object
+           
             ByteBuffer buffer = ByteBuffer.wrap(item);
             int bytes_to_write = buffer.capacity();
             while (bytes_to_write > 0) {
@@ -228,7 +228,8 @@ public class ServerQNIO extends Thread {
     }    
 
 
-    // Se crea un canal de socket no bloqueante para el nombre de host y el puerto especificados.
+    // Se crea un canal de socket no bloqueante para el nombre de host y 
+    //el puerto especificados.
     // se llama a connect() en el nuevo canal antes de que se devuelva.
     public static SocketChannel createSocketChannel(String hostName, int port) throws IOException {
         // Crear Canal no bloqueante

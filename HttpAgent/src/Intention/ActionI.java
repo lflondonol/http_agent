@@ -36,7 +36,9 @@ public class ActionI {
                 PrintWriter out, OutputStream dataOut,Socket clientConnect,
             Queue queueOfPetitions){
         
-        List<String> httpVerbs = Arrays.asList("GET","POST","PUT","DELETE","OPTIONS","HEAD","TRACE","CONNECT");
+        List<String> httpVerbs = 
+                Arrays.asList("GET","POST","PUT","DELETE","OPTIONS",
+                        "HEAD","TRACE","CONNECT");
         HttpRequestedPath httpRequest = new HttpRequestedPath();
         
     try {
@@ -80,7 +82,8 @@ public class ActionI {
                             httpRequest.getFileRequested(),
                             clientConnect);
                     } catch (IOException ioe) {
-                            System.err.println("Error with file not found exception : " + ioe.getMessage());
+                            System.err.println("Error with file not "
+                                    + "found exception : " + ioe.getMessage());
                     }
 
             } catch (IOException ioe) {
@@ -92,7 +95,8 @@ public class ActionI {
                             dataOut.close();
                             clientConnect.close(); // we close socket connection
                     } catch (Exception e) {
-                            System.err.println("Error closing stream : " + e.getMessage());
+                            System.err.println("Error closing stream : " 
+                                    + e.getMessage());
                     } 
 
                     if (verbose) {
