@@ -81,3 +81,10 @@ Las restricciones del proyecto son dadas por la evaluación de la práctica, en 
 - García, D. Simari, G. García, A. Planificación en agentes BDI. - Mestras, J. Agentes inteligentes, modelos y arquitecturas de agentes.  
 - Leach, Paul J. Berners-Lee, Tim Mogul, Jeffrey C. Masinter, Larry Fielding, Roy T. Gettys, James. Hypertext Transfer Protocol 
 - HTTP/1.1. Tomado de: https://tools.ietf.org/html/rfc2616
+
+# ENTREGA 2
+## Documentación
+- https://github.com/lflondonol/http_agent/wiki/Documento-Arquitectura-y-Dise%C3%B1o-de-Servidor-HTTP---httpAgent
+## Instrucciones de uso
+- https://github.com/lflondonol/http_agent/wiki/Instrucciones-de-Uso
+
