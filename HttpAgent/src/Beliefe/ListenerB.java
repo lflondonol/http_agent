@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,12 +21,11 @@ import java.util.logging.Logger;
  * @author JohnFlorez
  */
 
-public class ListenerB implements Runnable {
+public class ListenerB implements Runnable{
     
-    static final int PORT = 8099;
-    
-    
+    private static ServerSocket serverConnect;
     private static Socket clientConnect;
+    private static final int PORT = 12345;
     private static String pathRequest;
     private static boolean pathExists;
     private static HttpRequestedPath httpRequestedPath;
@@ -32,12 +33,15 @@ public class ListenerB implements Runnable {
     private static BufferedReader in = null;
     private static PrintWriter out = null; 
     private static BufferedOutputStream dataOut = null;
-
-
-
-
+    
     public ListenerB(Socket connect) {
         this.clientConnect = connect;
+    }
+    
+    public static void main(String[] args) throws InterruptedException{
+        
+        //Encender mi servidor
+        clientConnect=callServer(serverConnect);
     }
     
     
@@ -47,15 +51,12 @@ public class ListenerB implements Runnable {
             serverConnect = new ServerSocket(PORT);
             System.out.println("Servidor activo. \n Se escucha la conexión por"
                     + " el puerto: "+ PORT +".... \n");
-            //we listen until user halts server execution
-            while (true) {
-                ListenerB miServidor = new ListenerB(serverConnect.accept());
-                System.out.println("Se ha abierto la conexión. (" +
-                            new Date() + ")");
+           
+            while (true) {              
+                ListenerB myServer = new ListenerB(serverConnect.accept());
+                ExecutorService ejecutor = Executors.newCachedThreadPool();
+                ejecutor.execute(myServer);
                 
-                
-                Thread thread = new Thread(miServidor);
-                thread.start();
                 //Thread.sleep(30);
             }
             
@@ -71,49 +72,49 @@ public class ListenerB implements Runnable {
 
     @Override
     public void run() {
-        
-        System.out.println("Conexion IP: "+
-                        clientConnect.getInetAddress().toString());
-        
-        System.err.println("Conexion "+clientConnect.
-                getLocalAddress().toString());
-        
+        //Intentamos abrir una conexion de una petición que se ha hecho
+        //a nuestro servidor
         try {
+            System.out.println("--------------------------------");
+            System.out.println("Se ha abierto la conexión. (" +
+                    new Date() + ")");
+            System.out.println("Cliente Conectado: "+
+                    clientConnect.getInetAddress());
+            
             in = new BufferedReader(new InputStreamReader(
                     clientConnect.getInputStream()));
+            
             out = new PrintWriter(clientConnect.getOutputStream());
             dataOut = new BufferedOutputStream(clientConnect.getOutputStream());
-     
-        
-        pathRequest = ReceiverD.callReceiver(in,clientConnect);
-               
+            
+            pathRequest = ReceiverD.callReceiver(in,clientConnect);
 
-        pathExists = Mining.pathExistsInBlockChainContent(clientConnect, 
+            System.out.println("Este es el request "+pathRequest);
+            
+            //Una vez capturado el request se valida en nuestros repo(Mining)
+            //Si es una ruta valida.
+            pathExists = Mining.pathExistsInBlockContent(clientConnect, 
                 pathRequest);
-
-
-        
-       httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
+            System.out.println("El path es "+pathExists);
+            //Descomponemos la petición para ser procesada, ya sea porque
+            //es una ruta rechazada o porque va ser procesada.
+            httpRequestedPath = AnswerD.sendMessage(clientConnect,pathExists,
                pathRequest);
-       
-       //if (pathExists) {
-           QueueOfPetitions.pushQueuOfPetitions(in,out,dataOut,clientConnect,
-                   httpRequestedPath);
-              
-
-        //}else{
-         //RejectorB.rejectorMessage(in,out,dataOut,clientConnect, 
-           //      httpRequestedPath);
-        //}
-           } catch (IOException ex) {
-            Logger.getLogger(ListenerB.class.getName())
-                    .log(Level.SEVERE, null, ex);
-       
-           }
-       //AnswerB.responseClient(in,clientConnect, httpRequestedPath, fileData);
-       
+            //si la ruta en nuestros repositorios existe va a answer para
+            //procesar en la cola la peticion que llega, sino, la rechaza.
+            if (pathExists) {
+                QueueOfPetitions.pushQueuOfPetitions(in, out, dataOut, 
+                        clientConnect, httpRequestedPath);
+            }else{
+                RejectorB.rejectorMessage(in,out,dataOut,clientConnect, 
+                 httpRequestedPath);
+            }
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ListenerB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
-
     
 }

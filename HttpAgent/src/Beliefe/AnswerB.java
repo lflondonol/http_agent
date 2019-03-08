@@ -27,46 +27,65 @@ public class AnswerB {
     private String fileRequested;
     private String method;
     private static final File MY_DIR = new File(".");
-    private static final File WEB_ROOT = new File(MY_DIR.getAbsolutePath()+"/src/repository/");
+    private static final File WEB_ROOT = new File(MY_DIR.getAbsolutePath()+
+            "/src/repository/");
     private static final String DEFAULT_FILE = "index.html";
     private static final String FILE_HELLO = "hello.html";
     private static final String FILE_NOT_FOUND = "404.html";
     private static final String METHOD_NOT_SUPPORTED = "not-supported.html";
-    
+    private static final String [] STATUS_CODE_DESCRIPTION 
+            = {"501 Method Not Implemented","404 File Not Found",
+                "200 OK"};
     
     public AnswerB() {
     }
     
     
+    public static PrintWriter HeadersWrited(String content,
+            int fileLength, PrintWriter out, int code){
+                out.println("HTTP/1.1 "+STATUS_CODE_DESCRIPTION[code]);
+		out.println("Server: Java HTTP Server Agent : 1.0");
+		out.println("Date: " + new Date());
+		out.println("Content-type: " + content);
+		out.println("Content-length: " + fileLength);
+		out.println(); 
+		
+                //Guardar nuestro archivos de log
+                saveLog("HTTP/1.1 "+STATUS_CODE_DESCRIPTION[code]);
+                saveLog("Server: Java HTTP Server Agent : 1.0");
+                saveLog("Date: " + new Date());
+                saveLog("Content-type: " + content);
+                saveLog("Content-length: " + fileLength);
+                saveLog("\n");
+                
+        return out;
+    }
     
+  
     public static void fileNotFound(BufferedReader in ,
                 PrintWriter out, OutputStream dataOut, 
                 String fileRequested,
-                Socket clientConnect) 
+                Socket clientConnect,
+                String method) 
                 throws IOException {
-            
-                File file = new File(WEB_ROOT, FILE_NOT_FOUND);
-		int fileLength = (int) file.length();
-		String content = "text/html";
-		byte[] fileData = readFileData(file, fileLength);
-		
-		out.println("HTTP/1.1 404 File Not Found");
-                saveLog("HTTP/1.1 404 File Not Found");
-		out.println("Server: Java HTTP Server Agent : 1.0");
-                saveLog("Server: Java HTTP Server Agent : 1.0");
-		out.println("Date: " + new Date());
-                saveLog("Date: " + new Date());
-		out.println("Content-type: " + content);
-                saveLog("Content-type: " + content);
-		out.println("Content-length: " + fileLength);
-                saveLog("Content-length: " + fileLength);
-		out.println(); // blank line between headers and content, very important !
-		out.flush(); // flush character output stream buffer
-		
-		dataOut.write(fileData, 0, fileLength);
-		dataOut.flush();
-               
-                System.out.println("CONEXION CERRADA PETICION ENVIADA....");
+                
+        int code = 1;
+
+        File file = new File(WEB_ROOT, FILE_NOT_FOUND);
+        int fileLength = (int) file.length();
+        String content = "text/html";
+        byte[] fileData = readFileData(file, fileLength);
+        if (method.equals("HEAD")) {
+            out = AnswerB.HeadersWrited(content, fileLength, out, code);
+            out.flush();
+        }else{
+            out = AnswerB.HeadersWrited(content, fileLength, out, code);
+            out.flush(); 
+            dataOut.write(fileData, 0, fileLength);
+            dataOut.flush(); 
+        }
+
+        System.out.println("CONEXION CERRADA PETICION ENVIADA....");
 		
 	}
     
@@ -76,34 +95,23 @@ public class AnswerB {
                 Socket clientConnect) 
                 throws IOException {
             
-                File file = new File(WEB_ROOT, METHOD_NOT_SUPPORTED);
-		int fileLength = (int) file.length();
-		String content = "text/html";
-		byte[] fileData = readFileData(file, fileLength);
-		
-		out.println("HTTP/1.1 501 Metho Not Implemented");
-                saveLog("HTTP/1.1 501 Metho Not Implemented");
-		out.println("Server: Java HTTP Server Agent : 1.0");
-                saveLog("Server: Java HTTP Server Agent : 1.0");
-		out.println("Date: " + new Date());
-                saveLog("Date: " + new Date());
-		out.println("Content-type: " + content);
-                saveLog("Content-type: " + content);
-		out.println("Content-length: " + fileLength);
-                saveLog("Content-length: " + fileLength);
-		out.println();
-		out.flush(); 
-		
-		dataOut.write(fileData, 0, fileLength);
-		dataOut.flush();
-                
-                System.out.println("CONEXION CERRADA PETICION ENVIADA....");
+        File file = new File(WEB_ROOT, METHOD_NOT_SUPPORTED);
+        int fileLength = (int) file.length();
+        String content = "text/html";
+        byte[] fileData = readFileData(file, fileLength);
+        
+        int code = 0;
+
+        out = AnswerB.HeadersWrited(content, fileLength, out, code);
+        out.flush(); // flush character output stream buffer
+
+        dataOut.write(fileData, 0, fileLength);
+        dataOut.flush();
+
+        System.out.println("CONEXION CERRADA PETICION ENVIADA....");
 		
 	}
-
-    
-        
-        
+ 
         private static byte[] readFileData(File file, int fileLength) 
                 throws IOException {
 		FileInputStream fileIn = null;
@@ -137,47 +145,32 @@ public class AnswerB {
                 String method
                 ) throws IOException {
             
-                if (fileRequested.endsWith("/")) {
+            int code = 2;
+            
+            if (fileRequested.endsWith("/")) {
                         fileRequested += DEFAULT_FILE;
                 }
                 
-		File file = new File(WEB_ROOT, fileRequested);
-		int fileLength = (int) file.length();
-		String content = getContentType(fileRequested);
-                
-		
-		if (method.equals("GET")||method.equals("PUT")
-                        ||method.equals("POST")||method.equals("DELETE")) {
-                    byte[] fileData = readFileData(file, fileLength);
-                    out.println("HTTP/1.1 200 OK");
-                    saveLog("HTTP/1.1 200 OK");
-                    out.println("Server: Java HTTP Agent Server: 1.0");
-                    saveLog("Server: Java HTTP Agent Server: 1.0");
-                    out.println("Date: " + new Date());
-                    saveLog("Date: " + new Date());
-                    out.println("Content-type: " + content);
-                    saveLog("Content-type: " + content);
-                    out.println("Content-length: " + fileLength);
-                    saveLog("Content-length: " + fileLength);
-                    out.println();
-                    out.flush(); 
+            File file = new File(WEB_ROOT, fileRequested);
+            int fileLength = (int) file.length();
+            String content = getContentType(fileRequested);
 
-                    dataOut.write(fileData, 0, fileLength);
-                    dataOut.flush();
-                } else{
-                    out.println("HTTP/1.1 200 OK");
-                    saveLog("HTTP/1.1 200 OK");
-                    out.println("Server: Java HTTP Agent Server: 1.0");
-                    saveLog("Server: Java HTTP Agent Server: 1.0");
-                    out.println("Date: " + new Date());
-                    saveLog("Date: " + new Date());
-                    out.println("Content-type: " + content);
-                    saveLog("Content-type: " + content);
-                    out.println("Content-length: " + fileLength);
-                    saveLog("Content-length: " + fileLength);
-                    out.println();
-                    out.flush(); 
-                }               
+
+            if (method.equals("GET")||method.equals("PUT")
+                    ||method.equals("POST")||method.equals("DELETE")) {
+                
+                byte[] fileData = readFileData(file, fileLength);
+                
+                out = AnswerB.HeadersWrited(content, fileLength, out, code);
+                out.flush(); 
+
+                dataOut.write(fileData, 0, fileLength);
+                dataOut.flush();
+            } else{
+                
+                out = AnswerB.HeadersWrited(content, fileLength, out, code);
+                out.flush(); 
+            }               
 	}
         
         public static void saveLog(String text){
@@ -186,10 +179,9 @@ public class AnswerB {
                 BufferedWriter writer = new BufferedWriter(
                         new FileWriter(MY_DIR.getAbsolutePath()
                                 +"/src/repository/Log/Log.txt", true));
-                writer.append(' ');
                 writer.newLine();
                 writer.append(text);
-                writer.append('\n');
+               
 
                 writer.close();
             } catch (IOException ex) {

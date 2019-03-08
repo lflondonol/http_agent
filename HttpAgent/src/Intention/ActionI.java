@@ -30,7 +30,7 @@ import java.util.StringTokenizer;
 public class ActionI {
     
     public static boolean verbose = true;
-    public static int status_code = 0;
+    
     
     public static void validateAction(BufferedReader in ,
                 PrintWriter out, OutputStream dataOut,Socket clientConnect,
@@ -43,7 +43,8 @@ public class ActionI {
         
     try {
         
-        
+        //se desencola el request para obtener el metodo y la ruta
+        //a verificar
         httpRequest = (HttpRequestedPath) queueOfPetitions.remove();
         System.err.println("ESTE ES MI METODO "+httpRequest.getMethod());
         System.err.println("ESTA ES MI RUTA "+httpRequest.getFileRequested());
@@ -51,7 +52,7 @@ public class ActionI {
         if (!httpVerbs.contains(httpRequest.getMethod())) {
             System.out.println("ENTRE A NO SOPORTADOOOOS");
                 if (verbose) {
-                    status_code = 501;
+                    
                     AnswerB.methoNotSupported(in, out, dataOut, 
                             httpRequest.getFileRequested()
                             , clientConnect);
@@ -61,8 +62,8 @@ public class ActionI {
                 (httpRequest.getFileRequested().equals("/")||
                 httpRequest.getFileRequested().equals("/index.html"))){
                 
-                status_code = 200;
-                // GET or HEAD method
+                
+                
                 System.out.println("ENTRE A METODOS SOPORTADOS");
                  AnswerB.fileFound(in, out, dataOut, 
                          httpRequest.getFileRequested(), 
@@ -73,14 +74,14 @@ public class ActionI {
                 System.out.println("ENTRE A RUTA NO VALIDA");
                 AnswerB.fileNotFound(in,out,dataOut,
                             httpRequest.getFileRequested(),
-                            clientConnect);
+                            clientConnect,httpRequest.getMethod());
             }
 
             } catch (FileNotFoundException fnfe) {
                     try {
                             AnswerB.fileNotFound(in,out,dataOut,
                             httpRequest.getFileRequested(),
-                            clientConnect);
+                            clientConnect,httpRequest.getMethod());
                     } catch (IOException ioe) {
                             System.err.println("Error with file not "
                                     + "found exception : " + ioe.getMessage());
@@ -93,7 +94,7 @@ public class ActionI {
                             in.close();
                             out.close();
                             dataOut.close();
-                            clientConnect.close(); // we close socket connection
+                            //clientConnect.close(); 
                     } catch (Exception e) {
                             System.err.println("Error closing stream : " 
                                     + e.getMessage());

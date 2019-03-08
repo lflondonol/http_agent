@@ -29,7 +29,7 @@ public class ServerQNIO extends Thread {
     private Selector cSelector;
     
     // Clave de identificación para mapa de hilos
-    private final ConcurrentMap<Integer, SelectionKey> keysID; 
+    private final ConcurrentMap<Integer, SelectionKey> keys; 
     private final ConcurrentMap<SocketChannel,List<byte[]>> mapaDataSalida;
     
     //Mensajes de entrada ser capturados por hilo de mensajería
@@ -38,7 +38,7 @@ public class ServerQNIO extends Thread {
     public ServerQNIO(int port) {
         this.ePort = port;
         mapaDataSalida = new ConcurrentHashMap<SocketChannel, List<byte[]>>();
-        keysID = new ConcurrentHashMap<Integer, SelectionKey>();
+        keys = new ConcurrentHashMap<Integer, SelectionKey>();
     }
 
     public void start_server() throws IOException {
@@ -94,38 +94,27 @@ public class ServerQNIO extends Thread {
         ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
         SocketChannel channel = serverChannel.accept();
         channel.configureBlocking(false);
-        send_message(key, "Welcome."); //DEBUG
+        send_message(key, "Bienvenido."); 
 
         Socket socket = channel.socket();
         SocketAddress remoteAddr = socket.getRemoteSocketAddress();
-        log("Connected to: " + remoteAddr);
+        log("conexion: " + remoteAddr);
 
         // Registrar canal con selector para IO adicional.
         mapaDataSalida.put(channel, new ArrayList<byte[]>());
         channel.register(this.cSelector, SelectionKey.OP_READ);
 
         //Registrar canal con selector para IO adicional.
-        SelectionKey put = keysID.put(0, key);
+        SelectionKey put = keys.put(0, key);
     }
 
-    //Se verifica, se prueba
-    public void init_connect(String addr, int port){
-        try {
-            SocketChannel channel = createSocketChannel(addr, port);
-            channel.register(this.cSelector, channel.validOps());
-        }
-        catch (IOException e) {
-            //Darle un manejo a esta excepción
-        }
-    }
-
-    //Se verifica se prueba
+    
     private void connect(SelectionKey key) {
         SocketChannel channel = (SocketChannel) key.channel();
         try {
             channel.finishConnect(); 
             SelectionKey put;
-            put = keysID.put(0, key);
+            put = keys.put(0, key);
         }
         catch (IOException e0) {
             try {
@@ -155,14 +144,14 @@ public class ServerQNIO extends Thread {
             this.mapaDataSalida.remove(channel);
             Socket socket = channel.socket();
             SocketAddress remoteAddr = socket.getRemoteSocketAddress();
-            log("Connection closed by client: " + remoteAddr); //TODO handle
+            log("Conexion cerrada por el cliente: " + remoteAddr); 
             channel.close();
             return;
         }
 
         byte[] data = new byte[numRead];
         System.arraycopy(buffer.array(), 0, data, 0, numRead);
-        msgEntrante.add(new String(data, "utf-8"));
+        msgEntrante.add(new String(data, "UTF-8"));
     }
 
     private void write(SelectionKey key) throws IOException {
@@ -192,7 +181,7 @@ public class ServerQNIO extends Thread {
 
     public void send_message(int id, String msg) {
         SelectionKey key;
-        key = keysID.get(id);
+        key = keys.get(id);
         if (key != null)
             send_message(key, msg);
         //else
@@ -201,7 +190,7 @@ public class ServerQNIO extends Thread {
 
     public void send_message(SelectionKey key, String msg) {
         try {
-            queue_data(key, msg.getBytes("utf-8"));
+            queue_data(key, msg.getBytes("UTF-8"));
         }
         catch (UnsupportedEncodingException ex) {
             //Cuando hay una excepción se debe manejar
@@ -231,7 +220,8 @@ public class ServerQNIO extends Thread {
     // Se crea un canal de socket no bloqueante para el nombre de host y 
     //el puerto especificados.
     // se llama a connect() en el nuevo canal antes de que se devuelva.
-    public static SocketChannel createSocketChannel(String hostName, int port) throws IOException {
+    public static SocketChannel createSocketChannel(String hostName, int port) 
+            throws IOException {
         // Crear Canal no bloqueante
         SocketChannel sChannel = SocketChannel.open();
         sChannel.configureBlocking(false);

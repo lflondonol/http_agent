@@ -23,9 +23,8 @@ public class AnswerD {
             boolean pathExists, String pathRequest){
         
         myPathRequest = pathRequest;
-        System.err.println("Capturando el Recurso"
-                + " listo para enviar a Rejector o a Cola"
-                + " "+clientConnect.getLocalAddress().toString());
+        System.out.println("Se rechaza o se procesa la ruta recibida");
+        
         try{
             
             httpRequestedPath = new HttpRequestedPath();

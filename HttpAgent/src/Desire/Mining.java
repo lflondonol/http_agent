@@ -31,10 +31,10 @@ public class Mining {
     public Mining() {
     }
     
-    public static boolean pathExistsInBlockChainContent(Socket connect, 
+    public static boolean pathExistsInBlockContent(Socket connect, 
             String pathRequested){
-
-        separateString = pathRequested.split(" ");
+        if (pathRequested!=null) {
+            separateString = pathRequested.split(" ");
         uri = separateString[1];
         File myDir = new File(".");
         File folder = new File(myDir.
@@ -65,6 +65,8 @@ public class Mining {
         
         pathExists = pathFilesFound >= 1;
  
+        }
+        
         return pathExists;
     }
     

@@ -11,3 +11,4 @@
 /Hello.html
 /wiki
 /certificados.aspx
+/

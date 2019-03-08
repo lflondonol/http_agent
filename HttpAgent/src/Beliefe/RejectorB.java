@@ -31,7 +31,7 @@ public class RejectorB {
             AnswerB.
                     fileNotFound(in,out,dataOut,
                             httpRequestedPath.getFileRequested(),
-                            clientConnect);
+                            clientConnect, httpRequestedPath.getMethod());
             
             
         } catch (IOException ex) {
